@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - StayEase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .auth-card { grid-template-columns: 1fr; }
+            .info-side { display: none; }
+        }
+
+        .form-side {
+            padding: 60px 40px;
+        }
+
+        .info-side {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            clip-path: path('M0,0 H100% V100% H0 C150,850 150,150 0,0');
+        }
+
+        .input-pill {
+            background: #f3f4f6;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-pill:focus {
+            background: #e5e7eb;
+            outline: 2px solid #8b5cf6;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="auth-card mt-20">
+        <div class="form-side">
+            <div id="auth-container" class="auth-container">
+                <div class="text-center mb-8">
+                    <h1 id="auth-title" class="text-3xl font-bold mb-2">Welcome Back</h1>
+                    <p id="auth-subtitle" class="text-zinc-500 text-sm">Log in to your MyPG concierge.</p>
+                </div>
+
+                <form id="auth-form" class="space-y-4">
+                    <div id="name-field" class="hidden">
+                        <input type="text" id="auth-name" class="input-pill w-full px-5 py-3 rounded-full outline-none" placeholder="Full Name">
+                    </div>
+                    <div>
+                        <input type="email" id="auth-email" required class="input-pill w-full px-5 py-3 rounded-full outline-none" placeholder="Professional E-mail">
+                    </div>
+                    <div id="otp-field" class="hidden">
+                        <div class="flex gap-2">
+                            <input type="text" id="auth-otp" class="input-pill flex-1 px-5 py-3 rounded-full outline-none" placeholder="Enter 6-digit code">
+                            <button type="button" id="send-otp-btn" class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold hover:bg-indigo-200 transition-colors">Get OTP</button>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="password" id="auth-password" required class="input-pill w-full px-5 py-3 rounded-full outline-none" placeholder="Password">
+                    </div>
+                    <div class="text-right">
+                        <button type="button" id="forgot-password-btn" class="text-xs text-indigo-600 hover:text-indigo-800 font-medium">Forgot Password?</button>
+                    </div>
+                    <button type="submit" id="submit-btn" class="btn-gradient w-full py-3 text-white rounded-full font-bold">
+                        Sign In
+                    </button>
+                    <div class="text-center">
+                        <button type="button" id="toggle-auth" class="text-sm text-zinc-500 hover:text-zinc-800">
+                            Don't have an account? <span class="font-bold text-indigo-600">Sign Up</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Info Side -->
+        <div class="info-side">
+            <h2 class="text-3xl font-bold mb-4">Glad to see you!</h2>
+            <p class="opacity-90 max-w-xs">Welcome to your MyPG dashboard, where convenience meets comfort. Manage your premium stay with ease and efficiency.</p>
+        </div>
+    </div>
+
+    <!-- Reset Password Modal -->
+    <div id="reset-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center px-4">
+        <div class="fixed inset-0 bg-black/40 backdrop-blur-md"></div>
+        <div class="bg-white p-10 rounded-[2rem] shadow-2xl relative w-full max-w-sm animate-fadeIn">
+            <button id="close-reset" class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-zinc-900 transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h2 class="text-2xl font-bold mb-2">Restoring Access</h2>
+            <p class="text-zinc-500 text-sm mb-8 font-medium">We'll send a 6-digit code to your inbox.</p>
+            
+            <div id="reset-step-1" class="space-y-4">
+                <div>
+                    <input type="email" id="reset-email" class="input-pill w-full px-5 py-3 rounded-full outline-none" placeholder="Registered Email">
+                </div>
+                <button id="send-reset-otp" class="btn-gradient w-full py-3 text-white rounded-full font-bold">Verify Email</button>
+            </div>
+
+            <div id="reset-step-2" class="hidden space-y-4">
+                <div>
+                    <input type="text" id="reset-otp" class="input-pill w-full px-5 py-3 rounded-full outline-none text-center font-bold tracking-widest" placeholder="000000">
+                </div>
+                <div>
+                    <input type="password" id="reset-new-password" class="input-pill w-full px-5 py-3 rounded-full outline-none" placeholder="New Password">
+                </div>
+                <button id="confirm-reset" class="btn-gradient w-full py-3 text-white rounded-full font-bold">Reset Password</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/api.js"></script>
+    <script src="/js/components.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "StayEase PG - Modern Room Booking",
+  "description": "A premium PG room booking platform with real-time availability, integrated services (laundry, food), and secure online payments.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

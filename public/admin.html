@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - StayEase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-zinc-50 text-zinc-900">
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <main class="pt-32 pb-24 max-w-7xl mx-auto px-4">
+        <div id="access-denied" class="hidden text-center py-24">
+            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="lock" class="w-10 h-10"></i>
+            </div>
+            <h1 class="text-3xl font-bold mb-4">Access Denied</h1>
+            <p class="text-zinc-500 mb-8">You need administrator privileges to view this page.</p>
+            <a href="/login.html" class="px-8 py-3 bg-zinc-900 text-white rounded-full font-semibold">Go to Login</a>
+        </div>
+
+        <div id="admin-content" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-1">
+                <div class="bg-white p-8 rounded-[2.5rem] border border-black/5 shadow-sm sticky top-32">
+                    <h2 id="form-title" class="text-2xl font-bold mb-8">Manage Room</h2>
+                    <div id="form-error" class="hidden mb-6 p-4 bg-red-50 text-red-600 rounded-xl text-sm font-medium border border-red-100"></div>
+                    <div id="form-success" class="hidden mb-6 p-4 bg-emerald-50 text-emerald-600 rounded-xl text-sm font-medium border border-emerald-100"></div>
+                    <form id="room-form" class="space-y-6">
+                        <input type="hidden" id="room-id">
+                        <div>
+                            <label class="block text-sm font-medium text-zinc-700 mb-2">Room Type</label>
+                            <input type="text" id="room-type" class="w-full px-4 py-3 rounded-xl border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-zinc-700 mb-2">Price (₹)</label>
+                                <input type="number" id="room-price" class="w-full px-4 py-3 rounded-xl border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-zinc-700 mb-2">Capacity</label>
+                                <input type="number" id="room-capacity" class="w-full px-4 py-3 rounded-xl border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-zinc-700 mb-2">Available Units</label>
+                            <input type="number" id="room-available" class="w-full px-4 py-3 rounded-xl border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-zinc-700 mb-2">Description</label>
+                            <textarea id="room-description" class="w-full px-4 py-3 rounded-xl border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500 h-24"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-zinc-700 mb-2">Image URL</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="room-image" class="flex-1 px-4 py-3 rounded-xl border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500" placeholder="https://...">
+                                <label class="cursor-pointer px-4 py-3 bg-zinc-100 rounded-xl font-bold hover:bg-zinc-200 transition-all flex items-center justify-center">
+                                    <i data-lucide="upload" class="w-5 h-5"></i>
+                                    <input type="file" id="image-upload" class="hidden" accept="image/*">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button type="submit" id="submit-btn" class="flex-1 py-4 bg-emerald-600 text-white rounded-2xl font-bold hover:bg-emerald-700 transition-all">Add Room</button>
+                            <button type="button" id="cancel-btn" class="hidden px-6 py-4 bg-zinc-100 text-zinc-600 rounded-2xl font-bold hover:bg-zinc-200 transition-all">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div id="rooms-list" class="grid grid-cols-1 gap-6">
+                    <!-- Rooms injected here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="/js/api.js"></script>
+    <script src="/js/components.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>
