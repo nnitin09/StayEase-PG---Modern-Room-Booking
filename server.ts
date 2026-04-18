@@ -435,7 +435,8 @@ async function startServer() {
       `, [roomId, name, email, phone, checkIn, checkOut || '', JSON.stringify(services), totalPrice]);
       res.json({ success: true, bookingId: result.rows[0].id });
     } catch (error) {
-      res.status(500).json({ error: "Booking failed" });
+      console.error("Booking failed:", error);
+      res.status(500).json({ error: "Booking failed: " + (error as Error).message });
     }
   });
 
