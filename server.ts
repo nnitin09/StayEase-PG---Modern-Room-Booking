@@ -86,6 +86,7 @@ async function initDb() {
         total_price INTEGER,
         status TEXT DEFAULT 'pending'
       );
+      ALTER TABLE bookings ADD COLUMN IF NOT EXISTS user_phone TEXT;
 
       CREATE TABLE IF NOT EXISTS otps (
         id SERIAL PRIMARY KEY,
