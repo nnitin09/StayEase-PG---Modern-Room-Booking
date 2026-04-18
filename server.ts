@@ -448,11 +448,10 @@ async function startServer() {
     if (!stripeClient) return res.json({ url: `${baseUrl}/success.html?bookingId=${bookingId}` });
 
     try {
+      console.log("Creating Stripe session. Stripe version:", stripeClient.VERSION);
       const amount = Math.max(1, Math.round(Number(totalPrice)));
       const session = await stripeClient.checkout.sessions.create({
-        automatic_payment_methods: {
-          enabled: true,
-        },
+        payment_method_types: ['card'],
         line_items: [{
           price_data: {
             currency: "inr",
@@ -468,7 +467,8 @@ async function startServer() {
       } as any);
       res.json({ url: session.url });
     } catch (error: any) {
-      res.status(500).json({ error: error.message });
+      console.error("Stripe session creation error:", error);
+      res.status(500).json({ error: "Stripe error: " + error.message });
     }
   });
 
