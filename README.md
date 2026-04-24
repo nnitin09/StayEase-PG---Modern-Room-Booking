@@ -1,6 +1,6 @@
 # StayEase - Modern PG & Room Booking Platform
 
-![StayEase Banner](https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2000&auto=format&fit=crop) *(Replace with your actual project screenshot)*
+![StayEase Banner](https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2000&auto=format&fit=crop) 
 
 StayEase is a full-stack web application designed to streamline the process of finding, viewing, and booking PG accommodations and rented rooms. It features a modern, responsive UI, secure payment integration, and a comprehensive admin panel for room management.
 
@@ -100,7 +100,3 @@ This project is configured for easy deployment on **Render**.
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
-
-## 📝 License
-
-This project is licensed under the MIT License.
